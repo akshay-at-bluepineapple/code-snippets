@@ -1,0 +1,18 @@
+
+    const checkButtonTheme = (hexColorCode) => {
+        // Convert the hex color to RGB values
+        const red = parseInt(hexColorCode.substring(0, 2), 16);
+        const green = parseInt(hexColorCode.substring(2, 4), 16);
+        const blue = parseInt(hexColorCode.substring(4, 6), 16);
+
+        // Calculate the relative luminance using the formula
+        // L = 0.2126 * R + 0.7152 * G + 0.0722 * B
+        const luminance = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+
+        if (luminance < 128) {
+            setButtonTheme("dark")
+        } else {
+            setButtonTheme("light")
+        }
+
+    }
