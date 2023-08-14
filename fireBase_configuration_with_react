@@ -1,0 +1,36 @@
+#make a firebaseConfig.js file
+const firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
+  };
+
+  export default firebaseConfig;
+
+#add imports and code the file 
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import firebaseConfig from './firebaseConfig';
+
+firebase.initializeApp(firebaseConfig);
+
+  #the below code is to fetch data from firebase
+  const fetchData = async () => {
+    const db = firebase.firestore();
+    const dataRef = db.collection('data');
+    const snapshot = await dataRef.get();
+    const fetchedData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    console.log("fata from firebase", fetchedData);
+    setData(fetchedData);
+  };
+
+    #the below code is to add data to the fire base
+    const db = firebase.firestore();
+    const dataRef = db.collection('data');
+    const dataRef2 = db.collection('newTestDB');
+    await dataRef.add({ value: newData });
